@@ -1,7 +1,7 @@
 
 import boto3
 import os
-def upload_to_dynamodb(order,orchidbucket1,s3_key):
+def upload_to_dynamodb(order,orchidbucket1,s3://orchidbucket1/orders/snapshot_day = 2017-01-01/orders_1.csv):
     #set up AWS credentials & Dynamodb client
     dynamodb = boto3.resource("dynamodb")
     table = dynamodb.Table(order)
@@ -9,7 +9,7 @@ def upload_to_dynamodb(order,orchidbucket1,s3_key):
     #Download the file from S3 to a temporary  location on disk
     tmp_file= '/temp/temp-file.txt'  # use a temporary file to store the s3 file 
     s3 = boto3.client('s3')
-    s3.download_file(orchidbucket1,s3_key,tmp_file)
+    s3.download_file(orchidbucket1,s3://orchidbucket1/orders/snapshot_day = 2017-01-01/orders_1.csv,tmp_file)
     
     
     #Read data from the temporary file 
@@ -35,11 +35,11 @@ def upload_to_dynamodb(order,orchidbucket1,s3_key):
     
     table_name = "order"
     s3_bucket = "orchidbucket1"
-    s3_key = "YourS3Objectkey"
+    s3_key = "s3://orchidbucket1/orders/snapshot_day = 2017-01-01/orders_1.csv"
     
     try:
         #call the function to update Dynamodb
-        upload_to_dynamodb(order,orchidbucket1,s3_key)
+        upload_to_dynamodb(order,orchidbucket1,s3://orchidbucket1/orders/snapshot_day = 2017-01-01/orders_1.csv)
         print("update successful")
         
     except NoCredentials Error:
